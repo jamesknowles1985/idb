@@ -1,4 +1,9 @@
 <?php 
+include('includes/db_Ifxlib.php');
+require('includes/table_lib.php');
+include('includes/db_Mylib.php');
+//include('includes/dbconnect.php');
+
 //SQL request for MySQL
 $myIniFile = parse_ini_file("includes/idb.ini", TRUE);
 // create the MySQL connection
@@ -11,6 +16,23 @@ $Mydb->openConnection();
 //$branchlist = $Mydb->load_values('branch');
 
 $myIniFile = parse_ini_file("includes/idb.ini", TRUE);
+ 
 $Ifxconfig = new Ifxconfig($myIniFile['IDBIFX']['odbc'], $myIniFile['IDBIFX']['login'], $myIniFile['IDBIFX']['password']);
-$Ifxdb     = new Ifxdb($Ifxconfig);
+
+$Ifxdb = new Ifxdb($Ifxconfig);
+$Ifxdb->openConnection();
+
+$Ifxsql1 = $Ifxdb->query1("select usr_id from usr");
+
+while(odbc_fetch_row($Ifxsql1)){
+echo odbc_result($Ifxsql1, 1);
+
+}
+
+
+
+
+
+
+
 ?>

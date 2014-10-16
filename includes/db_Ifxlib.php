@@ -51,7 +51,12 @@
 		{
 			try
 			{
+//				echo $this->config->odbc.'</BR>';
+//				echo $this->config->username.'</BR>';
+//				echo $this->config->password.'</BR>';
+//				exit;
 					$this->connection = odbc_connect($this->config->odbc, $this->config->username, $this->config->password);
+//				$this->connection = odbc_connect('IR_ANDREW', 'informix','informix');
 			}
 			catch(exception $e)
 			{
